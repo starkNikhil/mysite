@@ -1,0 +1,71 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.main {
+  background-image: url("../Assets/Class-page-main-img.jpeg");
+  height: 64rem;
+}
+
+.hero-text > h2 {
+  font-family: var(--font-work-sans);
+}
+
+.about-class-heading {
+  color: #000;
+  font-family: var(--font-work-sans);
+  font-weight: 500;
+}
+
+.about-class > p , 
+.additional-details >p{
+  font-family: var(--font-work-sans);
+  position: relative;
+  top: 15px;
+  color: black;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.sub-heading {
+  position: relative;
+  top: 15px;
+  color: #000;
+  font-family: var(--font-work-sans);
+  font-weight: 500;
+  font-size: larger;
+}
+
+.features {
+  position: relative;
+  top: 15px;
+}
+
+.features > li {
+    position: relative;
+    top: 15px;
+    left: 15px;
+  list-style-type: "\27A2";
+  color: #000;
+}
+
+.additional-details >.sub-heading{
+    top: 45px;
+}
+
+.additional-details >p{
+    position: relative;
+    top: 50px;
+}
+
+.join-link{
+    top: 125px;
+}
+
+.black-border{
+   
+    width: 100%;
+    height: 3px;
+    background-color:#000;
+}
