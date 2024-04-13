@@ -35,15 +35,18 @@ app.get("/classes", (req, res) => {
 
 app.post("/register", async (req, res) => {
   try {
-   
-      const registerEmployee = new Register({
-        userName: req.body.userName,
-        Email: req.body.email,
-        password: req.body.password,
-      });
+    const registerEmployee = new Register({
+      userName: req.body.userName,
+      Email: req.body.email,
+      password: req.body.password,
+      termsAndConditions: req.body.termsAndConditions ==='on',
+    });
+    if (!req.body.termsAndConditions) {
+      throw new Error("Terms and conditions must be agreed to proceed with registration.");
+    }
       const registered = await registerEmployee.save();
       console.log(registered)
-      res.status(201).send("Registration succesful");
+      res.status(201).render("");
    
   } catch (error) {
     res.status(400).send(error);
