@@ -1,14 +1,21 @@
-const bcrypt = require("bcrypt");
+
 const path = require("path"); //importing path
 const hbs = require("hbs"); // using hbs library
 const express = require("express"); // importing express
 const app = express(); //intializing express
 const port = process.env.PORT || 4000;
+const Razorpay = require('razorpay');
+
+const instance = new Razorpay({
+  key_id: 'rzp_test_69QPpxczYmAy2G',
+  key_secret: 'wgu8bDikweFvCYp3PXEAlX9M',
+});
 
 require("./db/DBConnect");
 
 const Register = require("./models/registration");
 const exp = require("constants");
+const { register } = require("module");
 
 const static_path = path.join(__dirname, "../public");
 const template_path = path.join(__dirname, "../templates/views");
@@ -46,14 +53,12 @@ app.post("/register", async (req, res) => {
     // Convert termsAndConditions to Boolean
     const termsAccepted = Boolean(termsAndConditions);
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10); // 10 is the saltRounds
 
     // Create a new user object with hashed password
     const newUser = new Register({
       userName: userName,
       Email : email,
-      password: hashedPassword, // Store the hashed password
+      password: password, 
       termsAndConditions: termsAccepted,
     });
 
@@ -72,31 +77,29 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
-    console.log("Login attempt:", email, password);
+    const { userName, password } = req.body;
 
-    const user = await Register.findOne({ email });
-    console.log("User found in database:", user);
-
+    // Check if the email exists in the database
+    const user = await Register.findOne({ userName});
     if (!user) {
-      return res.status(401).send("Invalid email or password.");
+      return res.status(400).send("Email not found.");
     }
 
-    console.log("User password:", user.password);
-
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    console.log("Password match:", passwordMatch);
-
+    // Compare the provided password with the hashed password
+    const passwordMatch = user.password === password;
     if (!passwordMatch) {
-      return res.status(401).send("Invalid email or password.");
+      return res.status(400).send("Incorrect password.");
     }
 
-    res.status(200).send("Login successful");
+    // Passwords match, login successful
+    // Redirect the user to the dashboard or homepage
+    res.render("dashboard");
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).send("Internal server error");
   }
 });
+
 
 
 

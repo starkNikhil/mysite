@@ -17,7 +17,7 @@ const userRegisterSchema = new mongooose.Schema({
   },
   termsAndConditions: {
     type: Boolean,
-    default: false,
+    default: false,  
     required: true,
   },
 });
