@@ -14,6 +14,7 @@ const instance = new Razorpay({
 require("./db/DBConnect");
 
 const Register = require("./models/registration");
+const PhysicalDetails = require("./models/physical-details-form")
 const exp = require("constants");
 const { register } = require("module");
 
@@ -54,7 +55,7 @@ app.post("/register", async (req, res) => {
     const termsAccepted = Boolean(termsAndConditions);
 
 
-    // Create a new user object with hashed password
+    
     const newUser = new Register({
       userName: userName,
       Email : email,
@@ -66,11 +67,45 @@ app.post("/register", async (req, res) => {
     await newUser.save();
 
     // Respond with success message
-    res.status(201).send("Registration successful.");
+    res.render('details',{ message: "Registration successful.", email: email });
   } catch (error) {
     // Handle registration errors
     console.error("Registration error:", error);
     res.status(400).send("Registration failed.");
+  }
+});
+
+app.post("/phyDetails", async (req, res)=>{
+  try{
+const {FirstName, LastName, dateOfBirth,gender,Height,Weight,BMI,currentIssue,pastIssue,Profession,sleepTime,
+  dietaryDetails, workoutAvailability, workoutTiming
+} =req.body
+
+const newUserDetails = new PhysicalDetails({
+  FirstName : FirstName,
+  LastName: LastName,
+  dateOfBirth :dateOfBirth,
+  gender:gender,
+  Height:Height,
+  Weight:Weight,
+  BMI:BMI,
+  currentIssue:currentIssue,
+  pastIssue:pastIssue,
+  Profession:Profession,
+  sleepTime:sleepTime,
+  dietaryDetails:dietaryDetails,
+  workoutAvailability:workoutAvailability,
+  workoutTiming:workoutTiming
+});
+await newUserDetails.save();
+
+setTimeout(() => {
+  res.render('dashboard', { message: "Data stored successfully." });
+}, 2000);
+  }
+  catch(error){
+    console.error('Error submitting physical details:', error);
+    res.status(500).send('An error occurred while submitting physical details.');
   }
 });
 

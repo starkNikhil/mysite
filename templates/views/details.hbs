@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       {{>head}}
+        <link rel="stylesheet" href="./css/physical-details-form.css">
+        
+        <title>Physical-Details-Form</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <nav class="navbar">
+                    <div class="logo-section">
+                        <a href="../index.html"> <img
+                                src="../Assets/logo-img.png"
+                                alt="Fitness-Forge" class="logo-image"></a>
+
+                        <a href="../index.html"> <span>Fitness</span>
+                            <span>Forge</span></a>
+                    </div>
+
+                    <div class="navbar-menu">
+                        <a href="../index.html" class="navbar-link">Home</a>
+                        <a href="../html_files/about_us.html"
+                            class="navbar-link">About Us</a>
+                        <a href="#" class="navbar-link">Blogs</a>
+
+                        <button type="button" class="login-btn">Login</button>
+                    </div>
+
+                </nav>
+            </header>
+
+            <div class="wrapper">
+                <div class="heading-section">
+                    <h3>
+                        Physial Details</h3>
+                    <p>Enter the details to begin designing your Workout
+                        Plan</p>
+                </div>
+                <form class="phy-form" method="POST" action="phyDetails">
+                    <div class="name">
+                        <div class="text-section">
+                            <label for="username">Full Name
+                            </label>
+                        </div>
+                        <div class="input-name">
+                            <input type="text" name="FirstName" id="username"
+                                placeholder="First Name" class="fname">
+                            <input type="text" name="LastName" id="username"
+                                class="lname"
+                                placeholder="Last Name">
+                        </div>
+                    </div>
+                    <div class="date-of-birth">
+                        <div class="text-section">
+                            <label for="DOB">Date Of Birth</label>
+                        </div>
+                        <div>
+                            <input type="date" name="dateOfBirth"
+                                class="input-dob" id="DOB">
+                        </div>
+                    </div>
+                    <div class="gender">
+                        <div class="text-section">
+                            <label for="gender">Gender
+                            </label>
+                        </div>
+                        <select id="gender-select" name="gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="phy-details">
+
+                        <div class="input-height-weight">
+                            <input type="text" name="Height" id="height"
+                                placeholder="Height (in cm)">
+                            <input type="text" name="Weight" id="weight"
+                                placeholder="Weight (in kg)">
+                        </div>
+                    </div>
+                    <div class="Bmi">
+                        <input type="text" name="BMI" id="bmi"
+                            placeholder="BMI">
+                    </div>
+                    <div class="phy-issue">
+                        <div class="text-section">
+                            <label for="phy-issue-now">
+                                Any Health Issue Now
+                            </label>
+                        </div>
+                        <textarea name="currentIssue" id="phy-issue-now" cols="30"
+                            rows="10"></textarea>
+                        <div class="text-section">
+                            <label for="past-phy-issue">
+                                Any Past Health Issue
+                            </label>
+                        </div>
+                        <textarea name="pastIssue" id="past-phy-issue" cols="30"
+                            rows="10"></textarea>
+                    </div>
+                    <div class="job">
+                        <div class="text-section">
+                            <label for="profession">Your Profession</label>
+                        </div>
+                        <input type="text" name="Profession" id="profession">
+                    </div>
+                    <div class="sleep">
+                        <div class="text-section">
+                            <label for="sleep-hours">Hours Of Sleep</label>
+                        </div>
+                        <input type="number" name="sleepTime" id="sleep-hours">
+                    </div>
+
+                    <div class="diet-details">
+                        <div class="text-section">
+                            <label for="diet">Any Dietary Restrictions or
+                                Preferences</label>
+                        </div>
+                        <textarea name="dietaryDetails" id="diet" cols="10" rows="10"></textarea>
+                    </div>
+
+                    <div class="workout-section">
+                        <div class="workout-avail">
+                            <div class="text-section">
+                                <label for="workout">Availability for
+                                    Workout</label>
+                            </div>
+                            <select id="workout" name="workoutAvailability">
+                                <option>Please choose an option</option>
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                        <div class="workout-t">
+                            <div class="text-section">
+                                <label for="workout-time">Timing for
+                                    Workout</label>
+                            </div>
+                            <select id="workout-time" name="workoutTiming">
+                                <option value>Please choose an option</option>
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                                <option value="evening">Evening</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="submit-btn">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
