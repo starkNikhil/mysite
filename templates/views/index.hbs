@@ -84,57 +84,70 @@
             <div class="text-center">
                 <p class="sub-heading">Choose your pricing plan.</p>
             </div>
-
+        
             <div class="container2">
                 <div class="membership-card silver">
-                    <div class="membership-title">
-                        <img src="./Assets/dumbbell-solid.svg" alt="silver"
-                            class="card-icon">
-                        <h3> silver</h3>
-                    </div>
-                    <div class="membership-perks">
-                        <p>
-                            <span class="price-style">35</span>
-                            <span class="euro-style">$/month</span>
-                        </p>
-                        <p>Gain access to the gym room</p>
-                        <p>Group Fitness classes</p>
-                    </div>
-                    <a href="#" class="get-started-btn membership-btn">Sign
-                        Up</a>
+                    <!-- Silver plan details -->
+                    <form action="/create-order" method="POST">
+                        <div class="membership-title">
+                            <img src="./Assets/dumbbell-solid.svg" alt="silver"
+                                class="card-icon">
+                            <h3> silver</h3>
+                        </div>
+                        <div class="membership-perks">
+                            <p>
+                                <span class="price-style">35</span>
+                                <span class="euro-style">$/month</span>
+                            </p>
+                            <p>Gain access to the gym room</p>
+                            <p>Group Fitness classes</p>
+                        </div>
+                       
+                        <input type="hidden" name="plan" value="Silver">
+                        <input type="hidden" name="amount" value="3500"> <!-- Amount in paisa (35*100) -->
+                        <button class="get-started-btn membership-btn" type="submit">Sign Up</button>
+                    </form>
                 </div>
                 <div class="membership-card gold">
-                    <div class="membership-title">
-                        <img src="./Assets/medal-solid.svg" alt="gold"
-                            class="card-icon">
-                        <h3>Gold</h3>
-                    </div>
-                    <div class="membership-perks">
-                        <p>
-                            <span class="price-style">95</span>
-                            <span class="euro-style">$/month</span></p>
-                        <p>Gain access to the gym room</p>
-                        <p>Group Fitness classes</p>
-                        <p>Access to Sauna and Courts</p>
-                    </div>
-                    <a href="#" class="get-started-btn membership-btn">Sign
-                        Up</a>
+                    <!-- Gold plan details -->
+                    <form action="/create-order" method="POST">
+                        <div class="membership-title">
+                            <img src="./Assets/medal-solid.svg" alt="gold"
+                                class="card-icon">
+                            <h3>Gold</h3>
+                        </div>
+                        <div class="membership-perks">
+                            <p>
+                                <span class="price-style">95</span>
+                                <span class="euro-style">$/month</span></p>
+                            <p>Gain access to the gym room</p>
+                            <p>Group Fitness classes</p>
+                            <p>Access to Sauna and Courts</p>
+                        </div>
+                        <input type="hidden" name="plan" value="Gold">
+                        <input type="hidden" name="amount" value="9500"> <!-- Amount in paisa (95*100) -->
+                        <button class="get-started-btn membership-btn" type="submit">Sign Up</button>
+                    </form>
                 </div>
                 <div class="membership-card platinum">
-                    <div class="membership-title">
-                        <img src="./Assets/platinum.svg" alt="Platinum"
-                            class="card-icon">
-                        <h3>Platinum</h3>
-                    </div>
-                    <div class="membership-perks">
-                        <p>
-                            <span class="price-style">195</span>
-                            <span class="euro-style">$/month</span>
-                        </p>
-                        <p>Access to everything we offer!</p>
-                    </div>
-                    <a href="#" class="get-started-btn membership-btn">Sign
-                        Up</a>
+                    <!-- Platinum plan details -->
+                    <form action="/create-order" method="POST">
+                        <div class="membership-title">
+                            <img src="./Assets/platinum.svg" alt="Platinum"
+                                class="card-icon">
+                            <h3>Platinum</h3>
+                        </div>
+                        <div class="membership-perks">
+                            <p>
+                                <span class="price-style">195</span>
+                                <span class="euro-style">$/month</span>
+                            </p>
+                            <p>Access to everything we offer!</p>
+                        </div>
+                        <input type="hidden" name="plan" value="Platinum">
+                        <input type="hidden" name="amount" value="19500"> <!-- Amount in paisa (195*100) -->
+                        <button class="get-started-btn membership-btn" type="submit">Sign Up</button>
+                    </form>
                 </div>
             </div>
         </section>

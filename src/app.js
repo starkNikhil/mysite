@@ -6,7 +6,7 @@ const app = express(); //intializing express
 const port = process.env.PORT || 4000;
 const Razorpay = require('razorpay');
 
-const instance = new Razorpay({
+const razorpay = new Razorpay({
   key_id: 'rzp_test_69QPpxczYmAy2G',
   key_secret: 'wgu8bDikweFvCYp3PXEAlX9M',
 });
@@ -134,7 +134,6 @@ app.post("/login", async (req, res) => {
     res.status(500).send("Internal server error");
   }
 });
-
 
 
 

@@ -1,6 +1,10 @@
-const mongooose = require("mongoose");
-
-const userRegisterSchema = new mongooose.Schema({
+const mongoose = require("mongoose");
+// const PhysicalDetail = require('./physical-details-form')
+const userRegisterSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PhysicalDetails'
+},
   userName: {
     type: String,
     required: true,
@@ -22,6 +26,6 @@ const userRegisterSchema = new mongooose.Schema({
   },
 });
 
-const Register = new mongooose.model("Register", userRegisterSchema);
+const Register = new mongoose.model("Register", userRegisterSchema);
 
 module.exports = Register;
