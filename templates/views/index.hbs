@@ -105,7 +105,8 @@
                        
                         <input type="hidden" name="plan" value="Silver">
                         <input type="hidden" name="amount" value="3500"> <!-- Amount in paisa (35*100) -->
-                        <button class="get-started-btn membership-btn" type="submit">Sign Up</button>
+                        <button id="rzp-button1" class="get-started-btn membership-btn" type="submit">Sign Up</button>
+                        
                     </form>
                 </div>
                 <div class="membership-card gold">
@@ -126,7 +127,7 @@
                         </div>
                         <input type="hidden" name="plan" value="Gold">
                         <input type="hidden" name="amount" value="9500"> <!-- Amount in paisa (95*100) -->
-                        <button class="get-started-btn membership-btn" type="submit">Sign Up</button>
+                        <button id="rzp-button1" class="get-started-btn membership-btn" type="submit">Sign Up</button>
                     </form>
                 </div>
                 <div class="membership-card platinum">
@@ -146,7 +147,7 @@
                         </div>
                         <input type="hidden" name="plan" value="Platinum">
                         <input type="hidden" name="amount" value="19500"> <!-- Amount in paisa (195*100) -->
-                        <button class="get-started-btn membership-btn" type="submit">Sign Up</button>
+                        <button id="rzp-button1" class="get-started-btn membership-btn" type="submit">Sign Up</button>
                     </form>
                 </div>
             </div>
@@ -238,5 +239,7 @@
             <i class="fa-solid fa-caret-up"></i>
         </a>
         {{>scripts}}
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     </body>
 </html>

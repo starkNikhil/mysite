@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>User Dashboard</title>
 </head>
 <body>
-    <h1>Nj's Dashboard</h1>
+    <h1>Welcome to Your Dashboard, {{user.userName}}!</h1>
+    <h2>Your Registration Details:</h2>
+    <ul>
+        <li>Email: {{user.Email}}</li>
+        <li>Terms and Conditions Accepted: {{user.termsAndConditions}}</li>
+    </ul>
+    <h2>Your Physical Details:</h2>
+    <ul>
+        <li>First Name: {{physicalDetails.FirstName}}</li>
+        <li>Last Name: {{physicalDetails.LastName}}</li>
+        <li>Date of Birth: {{physicalDetails.dateOfBirth}}</li>
+        <li>Gender: {{physicalDetails.gender}}</li>
+        <li>Height: {{physicalDetails.Height}}</li>
+        <li>Weight: {{physicalDetails.Weight}}</li>
+        <li>BMI: {{physicalDetails.BMI}}</li>
+        <li>Current Issue: {{physicalDetails.currentIssue}}</li>
+        <li>Past Issue: {{physicalDetails.pastIssue}}</li>
+        <li>Profession: {{physicalDetails.Profession}}</li>
+        <li>Sleep Time: {{physicalDetails.sleepTime}}</li>
+        <li>Dietary Details: {{physicalDetails.dietaryDetails}}</li>
+        <li>Workout Availability: {{physicalDetails.workoutAvailability}}</li>
+        <li>Workout Timing: {{physicalDetails.workoutTiming}}</li>
+    </ul>
 </body>
 </html>

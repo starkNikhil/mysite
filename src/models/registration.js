@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
-// const PhysicalDetail = require('./physical-details-form')
+
 const userRegisterSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'PhysicalDetails'
-},
+  // Remove userId field
   userName: {
     type: String,
     required: true,
@@ -24,8 +21,14 @@ const userRegisterSchema = new mongoose.Schema({
     default: false,  
     required: true,
   },
+
+  // Reference to physical details
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PhysicalDetails', // Refers to the PhysicalDetails model
+  }
 });
 
-const Register = new mongoose.model("Register", userRegisterSchema);
+const Register = mongoose.model("Register", userRegisterSchema);
 
 module.exports = Register;

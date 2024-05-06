@@ -4,19 +4,13 @@ const hbs = require("hbs"); // using hbs library
 const express = require("express"); // importing express
 const app = express(); //intializing express
 const port = process.env.PORT || 4000;
-const Razorpay = require('razorpay');
-
-const razorpay = new Razorpay({
-  key_id: 'rzp_test_69QPpxczYmAy2G',
-  key_secret: 'wgu8bDikweFvCYp3PXEAlX9M',
-});
 
 require("./db/DBConnect");
 
 const Register = require("./models/registration");
 const PhysicalDetails = require("./models/physical-details-form")
 const exp = require("constants");
-const { register } = require("module");
+const router  = express.Router();
 
 const static_path = path.join(__dirname, "../public");
 const template_path = path.join(__dirname, "../templates/views");
@@ -122,19 +116,47 @@ app.post("/login", async (req, res) => {
 
     // Compare the provided password with the hashed password
     const passwordMatch = user.password === password;
-    if (!passwordMatch) {
-      return res.status(400).send("Incorrect password.");
+    if (userName === 'adminOfFitnessForge' && password === 'Mysite001') {
+      // Render the admin dashboard
+      res.render('AdminDashboard');
+    } else if (passwordMatch) {
+      // Render the user dashboard if password matches
+      res.render('dashboard');
+    } else {
+      // Render login form with error message if credentials are invalid
+      res.render('login.hbs', { error: 'Invalid username or password' });
     }
-
-    // Passwords match, login successful
-    // Redirect the user to the dashboard or homepage
-    res.render("dashboard");
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).send("Internal server error");
   }
 });
 
+router.get('/dashboard/:userId', async (req, res) => {
+    try {
+        // Fetch user details
+        const user = await Register.findById(req.params.userId);
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        console.log('User:', user); // Check if user details are retrieved
+
+        // Fetch physical details associated with the user
+        const physicalDetails = await PhysicalDetails.findOne({ userId: req.params.userId });
+        if (!physicalDetails) {
+            return res.status(404).send('Physical details not found');
+        }
+
+        console.log('Physical Details:', physicalDetails); // Check if physical details are retrieved
+
+        // Render dashboard template with user and physical details
+        res.render('dashboard.hbs', { user, physicalDetails });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server Error');
+    }
+});
 
 
 app.get("*", (req, res) => {
