@@ -1,27 +1,28 @@
-<!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Welcome to Admin Dashboard</h1>
     <form action="/admin/update-marquee" method="POST">
-        <label for="marqueeContent">Enter content for marquee:</label><br>
-        <input type="text" id="marqueeContent" name="marqueeContent" required><br><br>
-        <button type="submit">Update Marquee</button>
+      <label for="marqueeContent">Enter content for marquee:</label><br />
+      <input
+        type="text"
+        id="marqueeContent"
+        name="marqueeContent"
+        required
+      /><br /><br />
+      <button type="submit">Update Marquee</button>
     </form>
-</body>
-</html>
+    <form action="/admin/remove-marquee" method="POST">
+  <button type="submit">Remove Marquee</button>
+</form>
 
-</body>
+
+     <!-- Logout button -->
+    <a href="/logout">Logout</a>
+  </body>
 </html>
