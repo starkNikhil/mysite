@@ -38,7 +38,9 @@
                     <p>Enter the details to begin designing your Workout
                         Plan</p>
                 </div>
-                <form class="phy-form" method="POST" action="phyDetails">
+                <form class="phy-form" method="POST" action="/phyDetails">
+                <input type="hidden" name="userId" value="{{userId}}">
+
                     <div class="name">
                         <div class="text-section">
                             <label for="username">Full Name

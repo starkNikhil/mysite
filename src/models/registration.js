@@ -20,12 +20,6 @@ const userRegisterSchema = new mongoose.Schema({
     type: Boolean,
     default: false,  
     required: true,
-  },
-
-  // Reference to physical details
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'PhysicalDetails', // Refers to the PhysicalDetails model
   }
 });
 

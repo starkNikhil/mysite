@@ -69,8 +69,20 @@ app.get("/AdminDashboard", checkAuth, (req, res) => {
 });
 
 // Add a route for the user dashboard
-app.get("/dashboard", checkAuth, (req, res) => {
-  res.render("dashboard");
+app.get("/dashboard", checkAuth, async (req, res) => {
+  try {
+    // Fetch user details from session or database
+    const userId = req.session.userId; // Assuming userId is stored in session after login
+    const user = await Register.findById(userId);
+
+    // Fetch physical details associated with the user
+    const physicalDetails = await PhysicalDetails.findOne({ userId: userId });
+
+    res.render("dashboard", { user, physicalDetails });
+  } catch (error) {
+    console.error('Error fetching user or physical details:', error);
+    res.status(500).send('Internal server error');
+  }
 });
 
 app.post('/admin/update-marquee', async (req, res) => {
@@ -108,8 +120,6 @@ app.post("/register", async (req, res) => {
     // Convert termsAndConditions to Boolean
     const termsAccepted = Boolean(termsAndConditions);
 
-
-    
     const newUser = new Register({
       userName: userName,
       Email : email,
@@ -120,8 +130,11 @@ app.post("/register", async (req, res) => {
     // Save the user to the database
     await newUser.save();
 
-    // Respond with success message
-    res.render('details',{ message: "Registration successful.", email: email });
+    // Get the newly created user's ID
+    const userId = newUser._id;
+
+    // Pass the userId to the details view
+    res.render('details',{ userId });
   } catch (error) {
     // Handle registration errors
     console.error("Registration error:", error);
@@ -129,13 +142,15 @@ app.post("/register", async (req, res) => {
   }
 });
 
+
 app.post("/phyDetails", async (req, res)=>{
   try{
-const {FirstName, LastName, dateOfBirth,gender,Height,Weight,BMI,currentIssue,pastIssue,Profession,sleepTime,
+const {userId,FirstName, LastName, dateOfBirth,gender,Height,Weight,BMI,currentIssue,pastIssue,Profession,sleepTime,
   dietaryDetails, workoutAvailability, workoutTiming
 } =req.body
 
 const newUserDetails = new PhysicalDetails({
+  userId: userId,
   FirstName : FirstName,
   LastName: LastName,
   dateOfBirth :dateOfBirth,
@@ -188,6 +203,8 @@ app.post("/login", async (req, res) => {
       req.session.isAuthenticated = true;
       req.session.user = { role: 'user' };
       // Redirect to user dashboard
+       // Store userId in session upon successful login
+    req.session.userId = user._id;
       return res.redirect('/dashboard');
     } else {
       // Render login form with error message if credentials are invalid
@@ -218,31 +235,7 @@ app.get("/logout", (req, res) => {
     }
   });
 });
-router.get('/dashboard/:userId', async (req, res) => {
-    try {
-        // Fetch user details
-        const user = await Register.findById(req.params.userId);
-        if (!user) {
-            return res.status(404).send('User not found');
-        }
 
-        console.log('User:', user); // Check if user details are retrieved
-
-        // Fetch physical details associated with the user
-        const physicalDetails = await PhysicalDetails.findOne({ userId: req.params.userId });
-        if (!physicalDetails) {
-            return res.status(404).send('Physical details not found');
-        }
-
-        console.log('Physical Details:', physicalDetails); // Check if physical details are retrieved
-
-        // Render dashboard template with user and physical details
-        res.render('dashboard', { user, physicalDetails });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Server Error');
-    }
-});
 app.post('/admin/remove-marquee', async (req, res) => {
   try {
     // Remove the marquee content from the database

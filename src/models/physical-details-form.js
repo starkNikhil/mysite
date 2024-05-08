@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const physicalDetailsSchema = new mongoose.Schema({
- 
+userId:{type: mongoose.Schema.Types.ObjectId, ref:'Register'},
   FirstName: { type: String, required: true },
   LastName: { type: String },
   dateOfBirth: { type: Date, required: true },
@@ -15,11 +15,9 @@ const physicalDetailsSchema = new mongoose.Schema({
   dietaryDetails: { type: String, required: true },
   workoutAvailability: { type: String, required: true },
   workoutTiming: { type: String, required: true },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Register', // Refers to the Register model
-  }
 });
+
+
 
 const PhysicalDetails = new mongoose.model(
   "PhysicalDetails",
