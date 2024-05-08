@@ -11,9 +11,13 @@
         {{>RegisterLogin}}
         <section class="hero-section">
             <div class="hero-text">
-                {{#if marqueeContent}}
-                <marquee>{{ marqueeContent.content }}</marquee>
-                {{/if}}
+                <div class="marquee-container">
+                    {{#if marqueeContent}}
+                    <marquee class='adminMarquee'>{{ marqueeContent.content
+                        }}</marquee>
+                    {{/if}}
+
+                </div>
                 <p>Your <span class="text-orange">Fitness</span> Your <span
                         class="text-orange">Forge</span></p>
                 <p>Your <span class=" text-orange">Rules</span></p>
