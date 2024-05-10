@@ -178,6 +178,11 @@ setTimeout(() => {
   }
 });
 
+// Define the formatDate helper
+hbs.registerHelper('formatDate', function(date) {
+  if (!date) return '';
+  return new Date(date).toLocaleDateString('en-US');
+});
 
 app.post("/login", async (req, res) => {
   try {

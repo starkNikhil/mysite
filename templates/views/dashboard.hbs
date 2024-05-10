@@ -1,36 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
-</head>
-<body>
-    <h1>Welcome to Your Dashboard, {{user.userName}}!</h1>
-    <h2>Your Registration Details:</h2>
-    <ul>
-        <li>Email: {{user.Email}}</li>
-        <li>Terms and Conditions Accepted: {{user.termsAndConditions}}</li>
-    </ul>
-    <h2>Your Physical Details:</h2>
-    <ul>
-        <li>First Name: {{physicalDetails.FirstName}}</li>
-        <li>Last Name: {{physicalDetails.LastName}}</li>
-        <li>Date of Birth: {{physicalDetails.dateOfBirth}}</li>
-        <li>Gender: {{physicalDetails.gender}}</li>
-        <li>Height: {{physicalDetails.Height}}</li>
-        <li>Weight: {{physicalDetails.Weight}}</li>
-        <li>BMI: {{physicalDetails.BMI}}</li>
-        <li>Current Issue: {{physicalDetails.currentIssue}}</li>
-        <li>Past Issue: {{physicalDetails.pastIssue}}</li>
-        <li>Profession: {{physicalDetails.Profession}}</li>
-        <li>Sleep Time: {{physicalDetails.sleepTime}}</li>
-        <li>Dietary Details: {{physicalDetails.dietaryDetails}}</li>
-        <li>Workout Availability: {{physicalDetails.workoutAvailability}}</li>
-        <li>Workout Timing: {{physicalDetails.workoutTiming}}</li>
-    </ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/dashboard.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-     <!-- Logout button -->
-    <a href="/logout">Logout</a>
-</body>
+        <title>Dashboard</title>
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo"></div>
+            <ul class="menu">
+                <li class="active">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+               
+                <li class="logout">
+                    <a href="/logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="user-info">
+                    <img src="../Assets/profile.jpg" alt>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <h3 class="main-title">User Profile </h3>
+                <div class="card-wrapper">
+                    <div class="name-card">
+                        <div class="card-header">
+                            <span class="title">Name</span>
+                        </div>
+                        <span class="username">{{physicalDetails.FirstName}} {{physicalDetails.LastName}}</span>
+                    </div>
+                    <div class="dob-card">
+                        <div class="card-header">
+                            <span class="title">Date of Birth</span>
+                        </div>
+                        <span class="dateOfBirth">{{formatDate physicalDetails.dateOfBirth}}</span>
+                    </div>
+                    <div class="gender-card">
+                        <div class="card-header">
+                            <span class="title">Gender</span>
+                        </div>
+                        <span class="gender">{{physicalDetails.gender}}</span>
+                    </div>
+                    <div class="height-card">
+                        <div class="card-header">
+                            <span class="title">Height cm</span>
+                        </div>
+                        <span class="height">{{physicalDetails.Height}}</span>
+                    </div>
+                    <div class="weight-card">
+                        <div class="card-header">
+                            <span class="title">Weight</span>
+                        </div>
+                        <span class="weight">{{physicalDetails.Weight}}</span>
+                    </div>
+                    <div class="bmi-card">
+                        <div class="card-header">
+                            <span class="title">BMI</span>
+                        </div>
+                        <span class="bmi">{{physicalDetails.BMI}}</span>
+                    </div>
+                    <div class="profession-card">
+                        <div class="card-header">
+                            <span class="title">Profession</span>
+                        </div>
+                        <span class="profession">{{physicalDetails.Profession}}</span>
+                    </div>
+                    <div class="sleep-card">
+                        <div class="card-header">
+                            <span class="title">Hours of sleep</span>
+                        </div>
+                        <span class="hoursOfSleep">{{physicalDetails.sleepTime}}</span>
+                    </div>
+                    <div class="availability-card">
+                        <div class="card-header">
+                            <span class="title">Availability of Workout</span>
+                        </div>
+                        <span class="availability">{{physicalDetails.workoutAvailability}}</span>
+                    </div>
+                    <div class="timing-card">
+                        <div class="card-header">
+                            <span class="title">Timing for Workout</span>
+                        </div>
+                        <span class="timing">{{physicalDetails.workoutTiming}}</span>
+                    </div>
+                    <div class="health-card">
+                        <div class="card-header">
+                            <span class="title">Current Health Issue</span>
+                        </div>
+                        <span class="health">{{physicalDetails.currentIssue}}</span>
+                    </div>
+                    <div class="health-card">
+                        <div class="card-header">
+                            <span class="title">Past Health Issue</span>
+                        </div>
+                        <span class="health">{{physicalDetails.pastIssue}}</span>
+                    </div>
+
+                    <div class="diet-wrapper">
+
+                        <div class="diet-card">
+                            <div class="card-header">
+                                <span class="title">Dietary Restrictions or
+                                    Preferences</span>
+                            </div>
+                            <span class="diet">{{physicalDetails.dietaryDetails}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="edit-profile">
+
+            </div>
+        </div>
+        
+    </body>
 </html>
