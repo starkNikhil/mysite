@@ -93,7 +93,7 @@ app.post('/admin/update-marquee', async (req, res) => {
       await MarqueeContent.findOneAndUpdate({}, { content: marqueeContent }, { upsert: true });
 
       // Redirect back to the admin dashboard after updating
-      res.render('AdminDashboard');
+      res.redirect('/AdminDashboard');
   } catch (error) {
       console.error('Error updating marquee content:', error);
       res.status(500).send('Internal server error');

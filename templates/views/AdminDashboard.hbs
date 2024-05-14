@@ -1,28 +1,80 @@
-
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
-  </head>
-  <body>
-    <h1>Welcome to Admin Dashboard</h1>
-    <form action="/admin/update-marquee" method="POST">
-      <label for="marqueeContent">Enter content for marquee:</label><br />
-      <input
-        type="text"
-        id="marqueeContent"
-        name="marqueeContent"
-        required
-      /><br /><br />
-      <button type="submit">Update Marquee</button>
-    </form>
-    <form action="/admin/remove-marquee" method="POST">
-  <button type="submit">Remove Marquee</button>
-</form>
-
-
-     <!-- Logout button -->
-    <a href="/logout">Logout</a>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="./css/adminDashboard.css">
+        <title>Admin Dashboard</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="topbar">
+                <div class="logo">
+                    <h2>brand.</h2>
+                </div>
+                <div class="user">
+                    <img src="./Assets/profile.jpg" alt>
+                </div>
+            </div>
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="material-symbols-outlined icon">
+                                grid_view
+                            </span>
+                            <div>Dashboard</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <span class="material-symbols-outlined icon">
+                                logout
+                            </span>
+                            <div>Logout</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="main">
+                <div class="marquee">
+                    <form action="/admin/update-marquee" method="POST">
+                        <div class="marquee-input">
+                            <label for="marqueeContent"><h3>
+                                    Enter content for
+                                    marquee:
+                                </h3></label>
+                            <input
+                            type="text"
+                                placeholder="message"
+                                id="marqueeContent"
+                                name="marqueeContent"
+                                required>
+                        </div>
+                        <div class="submit-btn">
+                            <button type="submit">Update Marquee</button>
+                        </div>
+                    </form>
+                    <div class="marquee-output">
+                        <form action="/admin/remove-marquee" method="POST">
+                            <button type="submit">Remove Marquee</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="chart">
+                    <div class="mychart">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="./js/adminDashboard.js"></script>
+    </body>
 </html>
